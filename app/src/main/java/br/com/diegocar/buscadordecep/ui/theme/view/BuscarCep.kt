@@ -1,6 +1,7 @@
 package br.com.diegocar.buscadordecep.ui.theme.view
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,18 +27,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import br.com.diegocar.buscadordecep.ui.theme.Teal700
 import br.com.diegocar.buscadordecep.ui.theme.WHITE
 import br.com.diegocar.buscadordecep.ui.theme.componentes.Botao
 import br.com.diegocar.buscadordecep.ui.theme.componentes.CaixaTexto
+import br.com.diegocar.buscadordecep.ui.theme.viewmodel.BuscarCepViewModel
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BuscarCep(
-    navController: NavController
+    navController: NavController,
+    viewModel: BuscarCepViewModel = hiltViewModel()
 ){
     var inputCep by remember { mutableStateOf<String>("")}
     var inputLogradouro by remember {mutableStateOf("")}
@@ -84,9 +88,13 @@ fun BuscarCep(
                     )
                 )
                 Botao(
-                    onClick = {},
+                    onClick = {
+                        Toast.makeText(context, viewModel.valor(), Toast.LENGTH_SHORT).show()
+                    },
                     texto = "Buscar CEP",
-                    modifier = Modifier.padding(0.dp, 59.dp, 20.dp, 10.dp).height(55.dp)
+                    modifier = Modifier
+                        .padding(0.dp, 59.dp, 20.dp, 10.dp)
+                        .height(55.dp)
                 )
             }
 
@@ -155,7 +163,9 @@ fun BuscarCep(
                 Botao(
                     onClick = {},
                     texto = "Avançar",
-                    modifier = Modifier.padding(20.dp).height(55.dp)
+                    modifier = Modifier
+                        .padding(20.dp)
+                        .height(55.dp)
                 )
             }
         }
