@@ -50,8 +50,11 @@ android {
         }
     }
 }
+var ktor_version="2.3.11"
 
 dependencies {
+
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -75,4 +78,13 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.49")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     kapt("com.google.dagger:hilt-compiler:2.44")
+
+    implementation("io.ktor:ktor-client-core:$ktor_version")
+    implementation("io.ktor:ktor-client-cio:$ktor_version")
+
+    // negociação dos tipos de dados
+    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
+
+    // dependencia do json
+    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 }

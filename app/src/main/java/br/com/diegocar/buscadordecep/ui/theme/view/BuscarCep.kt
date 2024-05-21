@@ -89,7 +89,17 @@ fun BuscarCep(
                 )
                 Botao(
                     onClick = {
-                        Toast.makeText(context, viewModel.valor(), Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(context, viewModel.valor(), Toast.LENGTH_SHORT).show()
+                        viewModel.buscarCep(inputCep, respostaDoServidor = {
+                            logradouro, bairro, localidade, uf ->
+
+                            inputLogradouro = logradouro
+                            inputBairro = bairro
+                            inputCidade = localidade
+                            inputEstado = uf
+                        }, mensagemErro = { mensagem ->
+                            Toast.makeText(context, mensagem, Toast.LENGTH_SHORT).show()
+                        })
                     },
                     texto = "Buscar CEP",
                     modifier = Modifier
