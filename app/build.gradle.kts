@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -71,20 +71,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-    val nav_version = "2.7.7"
-    implementation("androidx.navigation:navigation-compose:$nav_version")
-
-    implementation("com.google.dagger:hilt-android:2.49")
-    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
-    kapt("com.google.dagger:hilt-compiler:2.44")
-
-    implementation("io.ktor:ktor-client-core:$ktor_version")
-    implementation("io.ktor:ktor-client-cio:$ktor_version")
-
+    implementation(libs.navigation.compose)
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.cio)
     // negociação dos tipos de dados
-    implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-
+    implementation(libs.ktor.client.content.negotiation)
     // dependencia do json
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+    implementation(libs.ktor.serialization.kotlinx.json)
+    kapt(libs.hilt.compiler)
 }
